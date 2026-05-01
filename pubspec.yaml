@@ -1,0 +1,21 @@
+name: drag_selectable_listview
+description: "A Flutter ListView that supports drag-to-select multiple items with customizable selection UI and smooth interaction."
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: ^3.11.5
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+
+flutter:
+
