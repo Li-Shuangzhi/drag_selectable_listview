@@ -1,6 +1,6 @@
-# DragSelectableList Testing
+# DragSelectableListView Testing
 
-This document describes the test suite for the DragSelectableList Flutter component.
+This document describes the test suite for the DragSelectableListView Flutter component.
 
 ## Test Structure
 

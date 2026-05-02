@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:drag_selectable_listview/drag_selectable_listview.dart';
 
 void main() {
-  group('DragSelectableList Widget Tests', () {
+  group('DragSelectableListView Widget Tests', () {
     late Set<int> selectedItems;
     late List<String> testItems;
 
@@ -21,7 +21,7 @@ void main() {
     }) {
       return MaterialApp(
         home: Scaffold(
-          body: DragSelectableList(
+          body: DragSelectableListView(
             itemCount: itemCount,
             selected: initialSelected ?? selectedItems,
             itemHeight: itemHeight,
@@ -163,7 +163,7 @@ void main() {
 
       Widget testWidget = MaterialApp(
         home: Scaffold(
-          body: DragSelectableList(
+          body: DragSelectableListView(
             itemCount: testItems.length,
             selected: <int>{},
             itemHeight: 56.0,
@@ -275,7 +275,7 @@ void main() {
 
         Widget largeWidget = MaterialApp(
           home: Scaffold(
-            body: DragSelectableList(
+            body: DragSelectableListView(
               itemCount: largeItemCount,
               selected: selectedItems,
               itemHeight: 56.0,
@@ -317,7 +317,7 @@ void main() {
     });
   });
 
-  group('DragSelectableList Unit Tests', () {
+  group('DragSelectableListView Unit Tests', () {
     test('should calculate correct index from pointer position', () {
       // This test would require more complex setup to test the getIndex method
       // as it depends on RenderBox and widget tree context
