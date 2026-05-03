@@ -12,7 +12,9 @@ A Flutter ListView that supports drag-to-select multiple items with customizable
 
 ## Demo
 
-![Demo GIF](./demo.gif)
+<div align="center">
+  <img src="./demo.gif" alt="Demo GIF" />
+</div>
 
 ## Getting Started
 
@@ -22,7 +24,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  drag_selectable_listview: ^0.0.1
+  drag_selectable_listview: ^1.0.1
 ```
 
 Then run:

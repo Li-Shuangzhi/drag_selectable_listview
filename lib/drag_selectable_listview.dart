@@ -118,15 +118,13 @@ class _DragSelectableListState extends State<DragSelectableListView> {
             ? NeverScrollableScrollPhysics()
             : AlwaysScrollableScrollPhysics(),
         itemCount: widget.itemCount,
+        itemExtent: widget.itemHeight,
         itemBuilder: (context, index) {
-          return SizedBox(
-            height: widget.itemHeight,
-            child: Row(
-              children: [
-                _buildLeadingWidget(index),
-                widget.itemBuilder(context, index),
-              ],
-            ),
+          return Row(
+            children: [
+              _buildLeadingWidget(index),
+              widget.itemBuilder(context, index),
+            ],
           );
         },
       ),
