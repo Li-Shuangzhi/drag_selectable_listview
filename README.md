@@ -12,9 +12,7 @@ A Flutter ListView that supports drag-to-select multiple items with customizable
 
 ## Demo
 
-<div align="center">
-  <img src="./demo.gif" alt="Demo GIF" />
-</div>
+![Demo GIF](./demo.gif)
 
 ## Getting Started
 
@@ -69,50 +67,49 @@ class _DragSelectPageState extends State<DragSelectPage> {
               itemCount: 60,
               itemHeight: 40,
               checkboxWidth: 40,
+              touchSlop: 8.0,
               itemBuilder: (context, index) {
-                return Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      print(index);
-                    },
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [Text("Item $index")],
-                          ),
+                return GestureDetector(
+                  onTap: () {
+                    print(index);
+                  },
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [Text("Item $index")],
                         ),
-                        Divider(height: 1),
-                      ],
-                    ),
+                      ),
+                      Divider(height: 1),
+                    ],
                   ),
                 );
               },
               checkboxBuilder:
                   ({
-                    required bool value,
-                    required ValueChanged<bool?> onChanged,
-                  }) {
-                    return Transform.scale(
-                      scale: 1.2,
-                      child: Checkbox(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        value: value,
-                        onChanged: onChanged,
-                      ),
-                    );
-                  },
+                required bool value,
+                required ValueChanged<bool?> onChanged,
+              }) {
+                return Transform.scale(
+                  scale: 1.2,
+                  child: Checkbox(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    value: value,
+                    onChanged: onChanged,
+                  ),
+                );
+              },
               selected: selected,
               onSelectionChanged: (e) {
+                //!! need setSate and selected = e
                 setState(() {
                   selected = e;
                 });
-                print(selected);
               },
             ),
           ),
@@ -134,107 +131,16 @@ class _DragSelectPageState extends State<DragSelectPage> {
 - **checkboxBuilder** (Function): Builder for custom checkbox widgets
 - **itemHeight** (double): Height of each list item
 - **checkboxWidth** (double): Width allocated for checkbox area
+- **touchSlop** (double, optional): Minimum drag distance to activate selection mode (defaults to 8.0)
 
 ### Selection Behavior
 
 - **Tap Selection**: Tap individual checkboxes to toggle selection
 - **Drag Selection**: Press and drag across items to select/deselect ranges
+  - **Important**: Drag selection only activates when gesture starts within checkbox area (defined by `checkboxWidth`)
+  - Gestures starting outside checkbox area trigger normal list scrolling
 - **Selection Toggle**: Drag selection toggles items (selected ↔ deselected)
 - **Visual Feedback**: Selection changes are immediately reflected in the UI
-
-## Examples
-
-### Contact List Example
-
-```dart
-class ContactList extends StatefulWidget {
-  @override
-  _ContactListState createState() => _ContactListState();
-}
-
-class _ContactListState extends State<ContactList> {
-  Set<int> selectedContacts = {};
-  List<Contact> contacts = [/* your contacts */];
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text('Selected: ${selectedContacts.length} contacts'),
-        Expanded(
-          child: DragSelectableListView(
-            itemCount: contacts.length,
-            selected: selectedContacts,
-            itemHeight: 72.0,
-            checkboxWidth: 56.0,
-            itemBuilder: (context, index) {
-              final contact = contacts[index];
-              return ListTile(
-                leading: CircleAvatar(
-                  child: Text(contact.name[0]),
-                ),
-                title: Text(contact.name),
-                subtitle: Text(contact.email),
-              );
-            },
-            checkboxBuilder: ({
-              required bool value,
-              required ValueChanged<bool?> onChanged,
-            }) {
-              return Checkbox(
-                value: value,
-                onChanged: onChanged,
-              );
-            },
-            onSelectionChanged: (newSelection) {
-              setState(() {
-                selectedContacts = newSelection;
-              });
-            },
-          ),
-        ),
-      ],
-    );
-  }
-}
-```
-
-## Performance
-
-### Current Optimizations
-
-✅ **Lazy Loading**: Uses `ListView.builder` for efficient memory usage\
-✅ **Efficient Scrolling**: Proper scroll controller management\
-✅ **Minimal Rebuilds**: Targeted widget updates
-
-### Performance Considerations
-
-For optimal performance with large lists:
-
-```dart
-// Good: Use const constructors for static content
-itemBuilder: (context, index) {
-  return const MyListItemWidget(); // If possible
-}
-
-// Good: Provide explicit item heights
-itemHeight: 56.0, // Avoids layout calculations
-
-// Consider: Use RepaintBoundary for complex items
-itemBuilder: (context, index) {
-  return RepaintBoundary(
-    child: MyComplexItemWidget(),
-  );
-}
-```
-
-### Future Optimizations
-
-Potential improvements for future versions:
-- RepaintBoundary integration for complex items
-- AutomaticKeepAlive for state preservation
-- Selection change batching for smoother drag operations
-- Item caching mechanisms
 
 ## Testing
 
@@ -252,18 +158,6 @@ Run tests with:
 flutter test
 ```
 
-See [TESTING.md](TESTING.md) for detailed test documentation.
-
-## Contributing
-
-We welcome contributions! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
 ### Bug Reports
 
 Please file bug reports with:
@@ -275,14 +169,6 @@ Please file bug reports with:
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Changelog
-
-### 0.0.1
-- Initial release
-- Basic drag selection functionality
-- Custom checkbox support
-- Configurable dimensions
 
 ## Support
 

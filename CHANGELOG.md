@@ -1,23 +1,15 @@
-## 1.0.0
-
-### 🎉 Major Changes
-- **BREAKING**: Renamed main class from `DragSelectableList` to `DragSelectableListView` for better naming consistency
-- Updated all documentation, tests, and examples to use the new class name
+## 1.0.1
 
 ### ✨ Features
-- Added demo GIF to showcase the drag selection functionality
-- Enhanced README with complete working example
-- Improved code formatting and documentation
+- Added configurable `touchSlop` parameter (default: 8.0px) for customizing drag sensitivity
 
-### 🐛 Bug Fixes & Improvements
-- Fixed code analysis issues (library_private_types_in_public_api)
-- Improved state management with proper setState() calls
+## 1.0.0
 
-### 📚 Documentation
-- Updated README.md with demo video and complete example
-- Updated TESTING.md to reflect new class name
-- Added comprehensive usage examples
-- Improved API documentation
+### 🚨 Breaking Changes
+- Renamed main class from `DragSelectableList` to `DragSelectableListView`
+
+### ✨ Features
+- Added demo GIF and enhanced documentation
 
 ## 0.0.1
 

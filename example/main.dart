@@ -44,25 +44,24 @@ class _DragSelectPageState extends State<DragSelectPage> {
               itemCount: 60,
               itemHeight: 40,
               checkboxWidth: 40,
+              touchSlop: 8.0,
               itemBuilder: (context, index) {
-                return Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      print(index);
-                    },
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [Text("Item $index")],
-                          ),
+                return GestureDetector(
+                  onTap: () {
+                    print(index);
+                  },
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [Text("Item $index")],
                         ),
-                        Divider(height: 1),
-                      ],
-                    ),
+                      ),
+                      Divider(height: 1),
+                    ],
                   ),
                 );
               },
